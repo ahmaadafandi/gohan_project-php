@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="theme-color" content="#039447">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<title>DISTANKAN MEDAN | Daftar Proyek</title>
+
+
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-grid.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+	<link href="css/daterangepicker.css" rel="stylesheet" type="text/css">
+	<link href="css/import.css" rel="stylesheet" type="text/css">
+	<link href="css/main.css" rel="stylesheet" type="text/css">
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="">
+</head>
+
+<body>
+
+	<div class="wrapper">
+		<!-- Sidebar Holder -->
+		<nav id="sidebar" class="bg-midnightblue">
+			<div class="sidebar-header text-center">
+				<h3>DISTANKAN</h3>
+				<strong><img class="img-responsive" src="img/logo.png"></strong>
+			</div>
+			<ul class="list-unstyled admin-login">
+				<li class="admin-avatar mt-5 text-center">
+					<img class="img-circle" src="img/avatar.jpg">
+					<span><h5>Pegawai 1</h5></span>
+				</li>
+			</ul>
+			<ul class="list-unstyled components">
+				<li class="active">
+					<a href="tambah_proyek.html">
+						<i class="fa fa-home"></i>
+						Tambah Proyek
+					</a>
+				</li>
+				<li>
+					<a href="proyek_berjalan.php">
+						<i class="fa fa-user-circle"></i>
+						Proyek Berjalan
+					</a>
+				</li>
+				<li>
+					<a href="pembuatan_laporan.php">
+						<i class="fa fa-shopping-bag"></i>
+						Pembuatan Laporan
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<!-- Page Content Holder -->
+		<div id="content">
+
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+
+					<div class="navbar-header">
+						<button type="button" id="sidebarCollapse" class="btn btn-default navbar-btn">
+							<i class="glyphicon glyphicon-align-left"></i>
+						</button>
+					</div>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/front-endadmin/"><i class="fa fa-sign-out"></i> Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<form method="POST" action="crud_data_proyek.php">
+				<div class="content-fill col-lg-12">
+					<div class="row">
+						<div class="col-lg-2">
+							<p>Nama Proyek</p>
+						</div>		
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="form-group mr-3 pl-0">
+									<input type="text" class="form-control" name="namaProyek" required/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<p>Anggaran</p>
+						</div>		
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="form-group mr-3">
+									<input type="text" class="form-control" name="anggaranProyek" required/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<p>Tanggal Mulai</p>
+						</div>		
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="form-group mr-3 pl-0">
+									<div class="icon-addon addon-md">
+										<input class="form-control" type="text" name="mulaiProyek" required>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<p>Tanggal Selesai</p>
+						</div>		
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="form-group mr-3 pl-0">
+									<div class="icon-addon addon-md">
+										<input class="form-control" type="text" name="selesaiProyek" required>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<input type="submit" class="btn btn-midnight float-right ml-1" value="Tambah Proyek">
+						</div>	
+					</div>
+					<br>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+					<h4 class="modal-title custom_align" id="Heading">Hapus Produk Ini?</h4>
+				</div>
+				<div class="modal-body">
+
+					<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Apakah Anda yakin menghapus produk ini?</div>
+
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Ya</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Tidak</button>
+				</div>
+			</div>
+			<!-- /.modal-content --> 
+		</div>
+		<!-- /.modal-dialog --> 
+	</div>
+</div>
+</div>
+</div>
+</body>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.jst"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/import.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/daterangepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="js/defaults-id_ID.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#sidebarCollapse').on('click', function () {
+			$('#sidebar').toggleClass('active');
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$('input[name="daterange"]').daterangepicker();
+	});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$('input[name="mulaiProyek"]').daterangepicker({
+			singleDatePicker: true,
+			showDropdowns: true
+		}, 
+		function(start, end, label) {
+			var years = moment().diff(start, 'years');
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$('input[name="selesaiProyek"]').daterangepicker({
+			singleDatePicker: true,
+			showDropdowns: true
+		}, 
+		function(start, end, label) {
+			var years = moment().diff(start, 'years');
+		});
+	});
+</script>
+
+</html>
+
